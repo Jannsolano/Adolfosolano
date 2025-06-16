@@ -11,7 +11,9 @@ describe('teste login', () => {
     myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
     genericField: ".oxd-input-field-bottom-space",
     dateField: ".oxd-date-input",
-    selectField: ".oxd-select-text-input"
+    selectField: ".oxd-select-text-input",
+    saveButton: "[type='submit']",
+    saveSucess: ".oxd-toast-close-container"
   }
   it.only('User Info Update - sucess', () => {
     cy.visit('/auth/login')
@@ -27,18 +29,18 @@ describe('teste login', () => {
     cy.get(selectorsList.genericField).eq(3).find('input').clear().type('idTest')
     cy.get(selectorsList.genericField).eq(4).find('input').clear().type('otheridTest')
     cy.get(selectorsList.genericField).eq(5).find('input').clear().type('DRV-14Test')
-    cy.get(selectorsList.dateField).eq(0).find('input').clear().type("2000-01-05").click()
+    cy.get(selectorsList.dateField).eq(0).find('input').clear().type("2030-01-05").click()
     cy.get(selectorsList.selectField).eq(0).click()
-    //if {
-    //  should('contain', ':nth-child(27) > span').click
-    //}
-    cy.get(':nth-child(27) > span').click
-    //cy.get(selectorsList.genericField).eq(7)
-    //cy.get(selectorsList.genericField).eq(8)
-    //cy.get(selectorsList.genericField).eq(9)
-    //cy.get(selectorsList.genericField).eq(11)
-    //cy.get(selectorsList.genericField).eq(12)
-    //cy.get(selectorsList.genericField).eq(13)
+    cy.get(':nth-child(27) > span').click()
+    cy.get(selectorsList.selectField).eq(1).click()
+    cy.get(':nth-child(3) > span').click()
+    cy.get(selectorsList.dateField).eq(1).find('input').clear().type("2000-01-05").click()
+    cy.get(selectorsList.genericField).eq(11).click()
+    cy.get(selectorsList.selectField).eq(2).click()
+    cy.get(':nth-child(3) > span').click()
+    cy.get(selectorsList.saveButton).eq(0).click()
+    cy.get('body').should('contain', 'Successfully Updated')
+    cy.get(selectorsList.saveSucess)
   })
   it('login - fail', () => {
     cy.visit('/auth/login')
