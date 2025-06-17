@@ -3,7 +3,7 @@ class DashboardPage {
     selectorsList() {
         const selectors = {
             dashboardGrid: ".orangehrm-dashboard-grid",
-            myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]'
+            
         }
 
         return selectors
@@ -15,7 +15,7 @@ class DashboardPage {
     }
 
     changePage() {
-        cy.get(this.selectorsList().myInfoButton).click()
+        
     }
     
 
