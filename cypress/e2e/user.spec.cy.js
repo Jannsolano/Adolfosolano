@@ -18,10 +18,7 @@ describe('teste login', () => {
     myInfoPage.userOtherInfo(userData.userInfo.licenseExpDate, userData.userInfo.birthDate)
   })
   it('login - fail', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userFail.username)
-    cy.get(selectorsList.passwordField).type(userData.userFail.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.get(selectorsList.wrongCredentialAlert)
+    loginPage.accessLoginPage()
+    loginPage.loginWrongAlert(userData.userFail.username, userData.userFail.password)
   })
 })
